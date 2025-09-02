@@ -1,4 +1,4 @@
-# psprelay
+# psp-relay
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
@@ -13,13 +13,13 @@ psprelay is a library for special functions related to powersystem protection re
 Use the package manager uv[uv](https://docs.astral.sh/uv/) to install psprelay.
 
 ```bash
-uv pip install "git+https://github.com/U-RxI/psprelay"
+uv pip install "git+https://github.com/U-RxI/psp-relay"
 ```
 
 ## Usage
 
 ```python
-import psprelay
+from psp import relay
 ```
 
 ## Contributing
