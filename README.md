@@ -10,7 +10,7 @@ psprelay is a library for special functions related to powersystem protection re
 
 ## Installation
 
-Use the package manager uv[uv](https://docs.astral.sh/uv/) to install psprelay.
+Use the package manager [uv](https://docs.astral.sh/uv/) to install psprelay.
 
 ```bash
 uv pip install "git+https://github.com/U-RxI/psp-relay"
