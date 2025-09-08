@@ -129,7 +129,7 @@ def get_func_hdr(filename, func_name):
 
         return s
 
-    tree = ET.parse(filename_hdr)
+    tree = ET.parse(filename)
     root = tree.getroot()
     matching_functions = []
     for elem in root.iter():
