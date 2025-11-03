@@ -207,7 +207,7 @@ class REFPDIF(DiffBiasPlot):
             x=[endZone2, endZone3],
             y=[100, 100 + endZone3 * 1],
             color="Blue",
-            label="Zone3",
+            label="Zone 1-2-3",
         )
 
     def add_point(self, Ibias: float | complex, Idiff: float | complex, Ibase: float):
