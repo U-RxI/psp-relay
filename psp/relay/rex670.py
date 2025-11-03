@@ -2,6 +2,7 @@ from shapely.geometry import Polygon
 from math import tan, pi
 from shapely import affinity
 import xml.etree.ElementTree as ET
+from psp.plotting.diff_plot import DiffBiasPlot
 
 
 def start_REL670(X1, R1, RF, Rrev):
@@ -153,3 +154,96 @@ def get_func_hdr(filename, func_name):
     }
 
     return func_dict
+
+
+class REFPDIF(DiffBiasPlot):
+    def __init__(
+        self, title: str = "Operate-bias characteristics", figsize: tuple = (8, 8)
+    ):
+        """
+        Class for plotting Operate-bias characteristics for 87N / restricted earth fault protection (REFPDIF) for RET670 relay.
+        The class inhearites from DiffBiasPlot.
+
+        Parameters
+        ----------
+        title : str, optional
+            Title for the figure. The default is 'Operate-bias characteristics'.
+        figsize : tuple, optional
+            Figure size. The default is (8, 8).
+
+        Returns
+        -------
+        None.
+
+        """
+        super().__init__(title=title, figsize=figsize)
+
+    def add_zones(self, IdMin: int, endZone3: float = 500):
+        """
+        Method for adding the zones / sections for the Operate-bias characteristics.
+
+
+        Parameters
+        ----------
+        IdMin : int
+            Maximum sensitivity in % of IBase.
+        endZone3 : float, optional
+            DESCRIPTION. The default is 500.
+
+        Returns
+        -------
+        None.
+
+        """
+        # Zone 1
+        self.add_plot(x=[0, 125], y=[IdMin, IdMin], color="Blue")
+
+        # Zone 2 (70% slope)
+        endZone2 = 125 + (100 - IdMin) / 0.7
+        self.add_plot(x=[125, endZone2], y=[IdMin, 100], color="Blue")
+
+        # Zone 3 (100% slope)
+        self.add_plot(
+            x=[endZone2, endZone3],
+            y=[100, 100 + endZone3 * 1],
+            color="Blue",
+            label="Zone3",
+        )
+
+    def add_point(self, Ibias: float | complex, Idiff: float | complex, Ibase: float):
+        """
+        Method for adding a point on the plot (Ibias, Idiff).
+
+        Parameters
+        ----------
+        Ibias : float|complex
+            Bias current in [A] either as magnitude or complex value.
+        Idiff : float|complex
+            Differential current in [A] either as magnitude or complex value..
+        Ibase : float
+            The base current setting.
+
+        Returns
+        -------
+        None.
+
+        """
+
+        out_Ibias = abs(Ibias) / Ibase * 100
+        out_Idiff = abs(Idiff) / Ibase * 100
+
+        self.add_plot(
+            [out_Ibias],
+            [out_Idiff],
+            marker="*",
+            label="$(I_{bias},I_{diff})$",
+            color="Red",
+        )
+
+    def layout(self, ax):
+        ax.set_xlim([0, self._get_rmax()])
+        ax.set_ylim([0, self._get_rmax()])
+        ax.set_aspect("equal", "box")
+        ax.set_xlabel("Bias current ($I_{bias}$) [%]", fontweight="bold")
+        ax.set_ylabel("Operating current ($I_{diff}$) [%]", fontweight="bold")
+        ax.legend()
