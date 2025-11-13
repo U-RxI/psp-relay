@@ -415,7 +415,7 @@ wheels = [
 [[package]]
 name = "psp-plotting"
 version = "0.1.0"
-source = { git = "https://github.com/U-RxI/psp-plotting#4e95cfa7853e3b480aacbdcc5f6c63592c68c330" }
+source = { git = "https://github.com/U-RxI/psp-plotting#c71e69ceaa9518eef351b8c94dba8a98b47bb222" }
 dependencies = [
     { name = "matplotlib" },
     { name = "numpy" },
