@@ -240,10 +240,10 @@ class REFPDIF(DiffBiasPlot):
             color="Red",
         )
 
-    def layout(self, ax):
-        ax.set_xlim([0, self._get_xmax(scale=1)+15])
-        ax.set_ylim([0, self._get_ymax(scale=1)+15])
-        ax.set_aspect(0.5)
-        ax.set_xlabel("Bias current ($I_{bias}$) [%]", fontweight="bold")
-        ax.set_ylabel("Operating current ($I_{diff}$) [%]", fontweight="bold")
-        ax.legend()
+    def layout(self):
+        self.ax.set_xlim([0, self._get_xmax(scale=1)+15])
+        self.ax.set_ylim([0, self._get_ymax(scale=1)+15])
+        self.ax.set_aspect(0.5)
+        self.ax.set_xlabel("Bias current ($I_{bias}$) [%]", fontweight="bold")
+        self.ax.set_ylabel("Operating current ($I_{diff}$) [%]", fontweight="bold")
+        self.ax.legend()
