@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> **This repository has moved.** psp-relay is now the `psp.relay` subpackage of
+> [U-RxI/psp](https://github.com/U-RxI/psp), including its full commit history.
+> This repository is archived and will not receive updates.
+>
+> ```bash
+> uv pip install "git+https://github.com/U-RxI/psp"
+> ```
+
 # psp-relay
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
